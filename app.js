@@ -4,6 +4,7 @@ const todoList=document.querySelector('.todo-list')
 const filterOption=document.querySelector('.filter-todo')
 
 document.addEventListener('DOMContentLoaded',getTodos)
+filterOption.addEventListener("click", filterTodo)
 
 const addTodo=()=>{
     event.preventDefault();
@@ -52,34 +53,30 @@ const deleteCheck=(e)=>{
 
 }
 
-const filterTodo=(e)=>{
-    const todos=todoList.childNodes;
+function filterTodo(e){
+    const todos = todoList.childNodes
     todos.forEach(function(todo){
         switch(e.target.value){
             case "all":
-                console.log()
-                // todo.style.display="flex";
+                todo.style.display = "flex" 
                 break;
             case "completed":
-                // if(todo.classList.include('completed')){
-                //      todo.style.display="flex";
-                // }
-                // else{
-                //      todo.style.display="none";
-                // }
-                break;
+                if (todo.classList.contains("completed")){
+                    todo.style.display = "flex"
+                }else{
+                    todo.style.display = "none"
+                }
+                break
             case "uncompleted":
-                // if(!todo.classList.include('completed')){
-                //      todo.style.display="flex";
-                // }
-                // else{
-                //      todo.style.display="none";
-                // }
-                break;
+                if (!todo.classList.contains("completed")){
+                    todo.style.display = "flex"
+                }else{
+                    todo.style.display = "none"
+                }
+                break
         }
-    });
+    })
 }
-
 function saveLocalTodos(todo){
     //check-the todos
     let todos;
