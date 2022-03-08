@@ -2,6 +2,7 @@ const todoInput=document.querySelector('.todo-input')
 const todoButton=document.querySelector('.todo-button')
 const todoList=document.querySelector('.todo-list')
 const filterOption=document.querySelector('.filter-todo')
+// const elements=document.getElementsByClassName('.filter-todo')
 
 document.addEventListener('DOMContentLoaded',getTodos)
 filterOption.addEventListener("click", filterTodo)
@@ -54,26 +55,34 @@ const deleteCheck=(e)=>{
 }
 
 function filterTodo(e){
+
     const todos = todoList.childNodes
-    todos.forEach(function(todo){
-        switch(e.target.value){
-            case "all":
-                todo.style.display = "flex" 
-                break;
-            case "completed":
-                if (todo.classList.contains("completed")){
-                    todo.style.display = "flex"
-                }else{
-                    todo.style.display = "none"
-                }
-                break
-            case "uncompleted":
-                if (!todo.classList.contains("completed")){
-                    todo.style.display = "flex"
-                }else{
-                    todo.style.display = "none"
-                }
-                break
+
+
+    todos.forEach(function(todo,idx){
+        if (idx==0){
+        }else{
+            switch(e.target.value){
+                case "all":
+                    todo.style.display = "flex" 
+                    break;
+                case "completed":
+                    // console.log(todo)
+                    if (todo.classList.contains("completed")){
+                        todo.style.display = "flex"
+                    }else{
+                        todo.style.display = "none"
+                    }
+                    break
+                case "uncompleted":
+                    // console.log(todo)
+                    if (!todo.classList.contains("completed")){
+                        todo.style.display = "flex"
+                    }else{
+                        todo.style.display = "none"
+                    }
+                    break
+            }
         }
     })
 }
